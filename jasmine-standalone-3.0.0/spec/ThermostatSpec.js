@@ -11,6 +11,42 @@ describe('Thermostat', function() {
     expect(thermostat.getCurrentTemperature()).toEqual(20);
   });
 
+  // --------------------------------------------------------
+
+
+  it('temperature is increased by 1', function(){
+    thermostat.upTempOne();
+    expect(thermostat.getCurrentTemperature()).toEqual(21);
+  });
+
+  it('temperature is decreased by provided value', function(){
+    thermostat.downTempOne();
+    expect(thermostat.getCurrentTemperature()).toEqual(19);
+  });
+
+  it('raises an error if temperature is going to fall below 10 degrees', function(){
+    thermostat.temperature = 10;
+    expect(function(){thermostat.downTempOne();}).toThrow('Temperature is too low!');
+  });
+
+  it('Power saving on: raises an error if temperature goes above 25 degrees', function(){
+    thermostat.temperature = 25;
+    expect(function(){thermostat.upTempOne();}).toThrow('Temperature is too high!');
+  });
+
+  it('Power saving on: does NOT raise an error if temperature goes above 25 and below 32 degrees', function(){
+    thermostat.temperature = 25;
+    thermostat._powerSavingSwitch();
+    expect(function(){thermostat.upTempOne();}).not.toThrow('Temperature is too high!');
+  });
+
+  it('Power saving off: raises an error if temperature goes above 32 degrees', function(){
+    thermostat.temperature = 32;
+    expect(function(){thermostat.upTempOne();}).toThrow('Temperature is too high!');
+  });
+
+  // --------------------------------------------------------
+
   it('temperature is increased by provided value', function(){
     thermostat.upTemp(3);
     expect(thermostat.getCurrentTemperature()).toEqual(23);

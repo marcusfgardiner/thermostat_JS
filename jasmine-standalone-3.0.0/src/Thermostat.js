@@ -9,6 +9,27 @@ var Thermostat = function() {
   this.RESET_TEMPERATURE = 20;
 };
 
+Thermostat.prototype.getCurrentTemperature = function() {
+  return this.temperature;
+};
+
+Thermostat.prototype.upTempOne = function(){
+  if(this.powerSaving) {
+      if(this.temperature >= this.MAX_TEMP_POWER_SAVING_OFF) throw 'Temperature is too high!';
+      this.temperature ++;
+  }
+  else {
+    if(this.temperature >= this.MAX_TEMP_POWER_SAVING_ON) throw 'Temperature is too high!';
+      this.temperature ++;
+  }
+};
+
+Thermostat.prototype.downTempOne = function() {
+  if(this.temperature <= this.MIN_TEMP) throw 'Temperature is too low!';
+      this.temperature --;
+};
+
+
 Thermostat.prototype.upTemp = function(degrees){
   if(this.powerSaving) {
       if((this.temperature += degrees) > this.MAX_TEMP_POWER_SAVING_OFF) throw 'Temperature is too high!';
@@ -16,10 +37,6 @@ Thermostat.prototype.upTemp = function(degrees){
   else {
     if((this.temperature += degrees) > this.MAX_TEMP_POWER_SAVING_ON) throw 'Temperature is too high!';
   }
-};
-
-Thermostat.prototype.getCurrentTemperature = function() {
-  return this.temperature;
 };
 
 Thermostat.prototype.downTemp = function(degrees) {
