@@ -1,14 +1,20 @@
 var Thermostat = function() {
   this.temperature = 20;
   this.powerSaving = true;
+  this.MAX_TEMP_POWER_SAVING_OFF = 25;
+  this.MAX_TEMP_POWER_SAVING_ON = 32;
+  this.MIN_TEMP = 10;
+  this.LOWER_ENERGY_USAGE = 18;
+  this.MEDIUM_ENERGY_USAGE = 25;
+  this.RESET_TEMPERATURE = 20;
 };
 
 Thermostat.prototype.upTemp = function(degrees){
   if(this.powerSaving) {
-      if((this.temperature += degrees) > 25) throw 'Temperature is too high!';
+      if((this.temperature += degrees) > this.MAX_TEMP_POWER_SAVING_OFF) throw 'Temperature is too high!';
   }
   else {
-    if((this.temperature += degrees) > 32) throw 'Temperature is too high!';
+    if((this.temperature += degrees) > this.MAX_TEMP_POWER_SAVING_ON) throw 'Temperature is too high!';
   }
 };
 
@@ -17,7 +23,7 @@ Thermostat.prototype.getCurrentTemperature = function() {
 };
 
 Thermostat.prototype.downTemp = function(degrees) {
-  if((this.temperature -= degrees) < 10) throw 'Temperature is too low!';
+  if((this.temperature -= degrees) < this.MIN_TEMP) throw 'Temperature is too low!';
 };
 
 Thermostat.prototype._powerSavingSwitch = function() {
@@ -25,14 +31,14 @@ Thermostat.prototype._powerSavingSwitch = function() {
 };
 
 Thermostat.prototype.resetTemperature = function() {
-  this.temperature = 20;
+  this.temperature = this.RESET_TEMPERATURE;
 };
 
 Thermostat.prototype.currentUsage = function() {
-  if(this.temperature <= 18) {
+  if(this.temperature <= this.LOWER_ENERGY_USAGE) {
     return "Low usage";
   }
-  else if(this.temperature < 25) {
+  else if(this.temperature < this.MEDIUM_ENERGY_USAGE) {
     return "Medium usage";
   }
   else {
