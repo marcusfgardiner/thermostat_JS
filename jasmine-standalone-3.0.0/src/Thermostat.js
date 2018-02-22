@@ -20,6 +20,18 @@ Thermostat.prototype._powerSavingSwitch = function() {
   this.powerSaving = !(this.powerSaving);
 };
 
-Thermostat.prototype.reset_temperature = function () {
+Thermostat.prototype.reset_temperature = function() {
   this.temperature = 20;
+};
+
+Thermostat.prototype.currentUsage = function() {
+  if(this.temperature <= 18) {
+    return "Low usage";
+  }
+  else if(this.temperature < 25) {
+    return "Medium usage";
+  }
+  else {
+    return "High usage";
+  }
 };
