@@ -8,16 +8,18 @@ button.test {
     background-color: red
 }
 </style>
+      <script src="jquery.js"></script>
       <script src="jasmine-standalone-3.0.0/src/Thermostat.js"></script>
+      <script src="jasmine-standalone-3.0.0/src/interface.js"></script>
   </head>
   <body>
   <title>
-    <section>
   Thermostat </title>
 
 
       <div class="1">
-      <h1> Temperature is: </h1>
+        <h1><span id="12345"></span></h1>
+
       </div>
       <button id="temperature-up" name="button"> + </button>
       <button id="temperature-down" name="button"> - </button>
@@ -28,24 +30,5 @@ button.test {
       <div class="3">
       <button id="power-saving-switch" name="button"> On/Off power saving </button>
       </div>
-    </section>
-
-
-    <script src="jquery.js"></script>
-    <script type="text/javascript">
-      $( document ).ready(function() {
-
-      $( "button" ).click(function( event ) {
-
-          alert( "Demon buttons!" );
-          event.preventDefault()
-          $( this ).fadeOut( "slow" );
-          $( this ).fadeIn( "slow" );
-          $( "button" ).addClass( "test" );
-      });
-
-    });
-    </script>
-
   </body>
 </html>
