@@ -2,11 +2,20 @@
 
 <html>
   <head>
+    <style>
+button.test {
+    font-weight: bold;
+    background-color: red
+}
+</style>
       <script src="jasmine-standalone-3.0.0/src/Thermostat.js"></script>
   </head>
   <body>
-  <title> Thermostat </title>
+  <title>
     <section>
+  Thermostat </title>
+
+
       <div class="1">
       <h1> Temperature is: </h1>
       </div>
@@ -28,10 +37,11 @@
 
       $( "button" ).click(function( event ) {
 
-          alert( "Thanks for visiting!" );
-
+          alert( "Demon buttons!" );
           event.preventDefault()
-
+          $( this ).fadeOut( "slow" );
+          $( this ).fadeIn( "slow" );
+          $( "button" ).addClass( "test" );
       });
 
     });

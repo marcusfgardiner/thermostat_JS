@@ -1,3 +1,26 @@
+Type this into console for nyan cat invasion:
+
+$(document).on({
+    'click': function(){
+    event.preventDefault();      $('img').attr('src','https://media.giphy.com/media/BSx6mzbW1ew7K/giphy.gif');
+$('div').css({ "background-color": "#ff0000"})
+
+alert( "NO BUTTONS 4 U!" );
+
+
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
 <!doctype html>
 <html>
 <head>
@@ -22,5 +45,33 @@
 });
 
     </script>
+    <script>
+
+        $("a").click(function (event) {
+            event.preventDefault();
+            $(this).hide("slow");
+            alert("no buttons 4 u");
+        });
+
+    </script>
 </body>
 </html>
+
+
+
+
+$('a').on({
+    'click': function(){
+    event.preventDefault();      $('img').attr('src','https://media.giphy.com/media/BSx6mzbW1ew7K/giphy.gif');
+    }
+});
+
+-----------------
+
+$(document).on({
+    'click': function(){
+    event.preventDefault();      $('img').attr('src','https://media.giphy.com/media/BSx6mzbW1ew7K/giphy.gif');
+
+
+    }
+});
